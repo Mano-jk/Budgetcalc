@@ -2,14 +2,15 @@ def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', '
 
 pipeline {
     agent { label 'master'}
-    tools { nodejs "NodeJs10.0" }
-    stages {
-        stage('Build') {
-            steps {
-	        sh 'npm install'
-                sh 'npm run cibuild'
-            }
+    stage('install dependency'){
+        
+        nodejs('nodejs'){
+            sh 'npm update'
+            sh 'npm install -g @angular/cli'
+            sh 'npm install bulma --save'
+            echo "Module installed"
         }
+    }
 	    stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonarscanner'
