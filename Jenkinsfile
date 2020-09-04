@@ -27,13 +27,8 @@ pipeline {
                 }
             }
         }
-        stage('Functional Testing') {
-	    steps{
-	            sh "docker run --name Budget_Calculator -d -p 80:80 sweety1995/nodejs:${env.BUILD_ID}"
-		    sh "pytest -v -s --html=functional_result_${env.BUILD_ID}.html testing/test_pytest.py"
-	        }
-	    }
-	stage('Pushing Docker Image to DockerHub') {
+        
+     	stage('Pushing Docker Image to DockerHub') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
