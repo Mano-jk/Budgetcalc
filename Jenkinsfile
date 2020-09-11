@@ -14,7 +14,7 @@ pipeline {
         }
        stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'SonarScanner 4.0';
+              def scannerHome = tool name: ''SonarScanner 4.0', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
             }
             steps {
                 withSonarQubeEnv('sonarqube runner') {
