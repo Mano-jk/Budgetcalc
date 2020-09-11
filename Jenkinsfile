@@ -8,6 +8,7 @@ pipeline {
           sh 'npm update'
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma --save'
+          sh  'npm rebuild node-sass'
           echo "Module installed"
           sh 'npm run build'          
             }
