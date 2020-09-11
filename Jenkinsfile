@@ -1,17 +1,15 @@
 pipeline {
     agent { label 'master'}
-    tools { nodejs "nodejs" }
+    tools { nodejs "NodeJs10.0" }
     stages {
-        stage('install dependency'){
-            sh 'npm update'
-            sh 'npm install -g @angular/cli'
-            sh 'npm install bulma --save'
-            echo "Module installed"
-        }
         stage('Build') {
             steps {
 	        sh 'npm install'
-                sh 'npm run build'
+          sh 'npm update'
+          sh 'npm install -g @angular/cli'
+          sh 'npm install bulma --save'
+          echo "Module installed"
+          sh 'npm run build'          
             }
         }
     }
