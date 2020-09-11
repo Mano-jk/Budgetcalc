@@ -12,7 +12,6 @@ pipeline {
           sh 'npm run build'          
             }
                 }
-        }
        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonarqube runner';
@@ -24,3 +23,4 @@ pipeline {
             }
         }
     }
+}
