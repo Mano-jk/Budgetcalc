@@ -20,7 +20,11 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner \
+  -Dsonar.projectKey=BudgetCalc \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://35.226.149.126:8080 \
+  -Dsonar.login=4a38c68652c841ba5588d7de4ad18f0be15a7aa8"
                 }
             }
         }
