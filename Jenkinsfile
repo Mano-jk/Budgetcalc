@@ -18,7 +18,12 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner \
+  -Dsonar.projectKey=BudgetCal \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://35.226.149.126:8080 \
+  -Dsonar.login=117366e7da5e7e4fc5b90becdba5669b935a372b
+"
                 }
             }
         }
