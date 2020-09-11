@@ -11,14 +11,16 @@ pipeline {
           echo "Module installed"
           sh 'npm run build'          
             }
+                }
+       stage('SonarQube analysis') {
+            environment {
+               def scannerHome = tool 'sonarqube runner';
+            }
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
         }
-       node {
-  stage('SonarQube analysis') {
-    def scannerHome = tool name: 'sonar_scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
-    withSonarQubeEnv('sonar') { 
-      sh "${scannerHome}/bin/sonar-scanner"
-          }
-        }
-      }
-   }
+    }
 }
