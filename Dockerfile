@@ -4,4 +4,4 @@ COPY package.json package-lock.json ./
 RUN npm install
 RUN npm install bulma
 COPY . .
-RUN npm run build
+RUN ng build
