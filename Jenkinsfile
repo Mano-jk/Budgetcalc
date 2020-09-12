@@ -31,7 +31,7 @@ pipeline {
        stage('Docker Build') {
             steps {
                 script {
-                    docker.build("BudgetCalc:${env.BUILD_ID}")
+                    docker.build("Budgetcalc:${env.BUILD_ID}")
                 }
             }
         }      
