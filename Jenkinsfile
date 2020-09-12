@@ -31,7 +31,7 @@ pipeline {
        stage('Docker Build') {
             steps {
                 script {
-                    docker.build("/var/lib/jenkins/workspace/BudgetCalc:${env.BUILD_ID}")
+                    docker.build("BudgetCalc:${env.BUILD_ID}")
                 }
             }
         }      
