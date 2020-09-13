@@ -51,7 +51,7 @@ pipeline {
         {
           steps
           {
-            sh "docker rmi $(docker images -q -f dangling=true)
+            sh "docker rmi $(docker images -q -f dangling=true)"
           }
         }
     }
