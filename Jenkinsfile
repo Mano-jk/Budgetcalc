@@ -31,18 +31,19 @@ pipeline {
        stage('Docker Build') {
             steps {
                 script {
-                    docker.build("budgetcalc:${env.BUILD_ID}")
+                    docker.build("m1noj/budgetcalc:${env.BUILD_ID}")
                 }
             }
         }
         stage('Push image - Docker Hub') {
           steps {
-Environment {
-def dockercred = 'dockerhub'
             script {
-                  docker.withRegistry('https://registry.hub.docker.com', dockercred)
-                  docker.image("budgetcalc:${env.BUILD_ID}").push()
-                } }
+                      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
+                    {
+                          docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push()
+                          docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push("latest")
+                    }
+                } 
             }
         }
     }
