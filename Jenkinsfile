@@ -52,6 +52,7 @@ pipeline {
           steps
           {
             sh 'docker image prune -a'
+            echo 'y'
           }
         }
     }
