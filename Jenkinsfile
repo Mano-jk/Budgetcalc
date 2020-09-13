@@ -29,7 +29,6 @@ pipeline {
             }
         }
        stage('Docker Build') {
-Environment {dockercred = 'dockerhub'}
             steps {
                 script {
                     docker.build("budgetcalc:${env.BUILD_ID}")
@@ -38,9 +37,9 @@ Environment {dockercred = 'dockerhub'}
         }
         stage('Push image - Docker Hub') {
           steps {
+Environment {dockercred = 'dockerhub'}
             script {
-                  docker.withRegistry('https://registry.hub.docker.com', dockerhub
-)
+                  docker.withRegistry('https://registry.hub.docker.com', dockercred)
                   docker.image("budgetcalc:${env.BUILD_ID}").push()
                 }
             }
