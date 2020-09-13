@@ -38,13 +38,9 @@
             }
         }
         stage('Push image - Docker Hub') {
-          environment {
-    registry = "m1noj/budgetcalc"
-    docker_credential = ‘dockerhub’
-          }
           steps {
             script {
-                  docker.withRegistry('https://registry.hub.docker.com', 'docker_credential')
+                  docker.withRegistry('https://registry.hub.docker.com/repository/docker/m1noj/budgetcalc', 'dockerhub')
                   docker.image("budgetcalc:${env.BUILD_ID}").push()
                 }
             }
