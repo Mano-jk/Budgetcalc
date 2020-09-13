@@ -41,6 +41,7 @@
           environment {
     registry = "m1noj/budgetcalc"
     docker_credential = ‘dockerhub’
+          }
           steps {
             script {
                   docker.withRegistry('https://registry.hub.docker.com', 'docker_credential')
