@@ -1,6 +1,4 @@
-
-+
-  ipeline {
+pipeline {
     agent { label 'master'}
     tools { nodejs "nodejs" }
     stages {
