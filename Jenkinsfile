@@ -1,4 +1,6 @@
-pipeline {
+
++
+  ipeline {
     agent { label 'master'}
     tools { nodejs "nodejs" }
     stages {
@@ -36,10 +38,13 @@ pipeline {
             }
         }
         stage('Push image - Docker Hub') {
+          environment {
+    registry = "m1noj/budgetcalc"
+    docker_credential = ‘dockerhub’
           steps {
             script {
                   docker.withRegistry('https://registry.hub.docker.com', 'docker_credential')
-                  docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push()
+                  docker.image("budgetcalc:${env.BUILD_ID}").push()
                 }
             }
         }
