@@ -5,7 +5,7 @@ RUN npm install
 RUN npm install -g @angular/cli
 RUN npm install bulma
 RUN npm uninstall node-sass && npm install node-sass
-EXPOSE 9020
+EXPOSE 4200
 CMD [ "npm", "start" ]
 COPY . .
 RUN ng build
