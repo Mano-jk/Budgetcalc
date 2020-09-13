@@ -38,7 +38,7 @@ pipeline {
         stage('Push image - Docker Hub') {
           steps {
             script {
-                  docker.withRegistry('', 'dockerhub')
+                  docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
                   docker.image("budgetcalc:${env.BUILD_ID}").push()
                 }
             }
