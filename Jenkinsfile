@@ -46,5 +46,13 @@ pipeline {
                 } 
             }
         }
+      
+        stage('Remove Unused docker image') 
+        {
+          steps
+          {
+            sh "docker rmi $(docker images -q -f dangling=true)
+          }
+        }
     }
 }
