@@ -29,6 +29,7 @@ pipeline {
             }
         }
        stage('Docker Build') {
+Environment {dockercred = 'dockerhub'}
             steps {
                 script {
                     docker.build("budgetcalc:${env.BUILD_ID}")
