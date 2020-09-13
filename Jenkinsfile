@@ -39,7 +39,7 @@ pipeline {
           steps {
             script {
                   docker.withRegistry('https://registry.hub.docker.com', 'docker_credential')
-                  docker.image("vm1noj/budgetcalc:${env.BUILD_ID}").push()
+                  docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push()
                 }
             }
         }
