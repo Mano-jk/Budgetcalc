@@ -34,6 +34,12 @@ pipeline {
                     docker.build("budgetcalc:${env.BUILD_ID}")
                 }
             }
-        }      
+        }
+        stage('Push image - Docker Hub') {
+                  docker.withRegistry('https://registry.hub.docker.com', 'docker_credential')
+                  docker.image("vm1noj/budgetcalc:${env.BUILD_ID}").push()
+                }
+            }
+        }
     }
 }
