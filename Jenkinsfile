@@ -36,8 +36,7 @@ pipeline {
           }
         steps {
           script  {
-                    reporters= ['dots', 'junit']
-                    junitReporter= {outputFile: 'test-results.xml'}
+                    sh 'ng test'
                   }
               }
       }
