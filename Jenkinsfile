@@ -40,7 +40,6 @@ pipeline {
             script {
                       docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
                     {
-                          docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push()
                           docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push("latest")
                     }
                 } 
