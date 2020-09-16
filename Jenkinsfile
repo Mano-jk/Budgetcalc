@@ -31,7 +31,7 @@ pipeline {
       stage('Testing')
       {
         environment {
-          PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
+          PATH=/usr/local/bin
           PHANTOMJS_BIN=/usr/local/bin/phantomjs
           }
         steps {
