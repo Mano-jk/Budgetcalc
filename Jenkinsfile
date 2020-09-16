@@ -32,7 +32,6 @@ pipeline {
       {
         environment {
           PATH=/usr/local/bin
-          PHANTOMJS_BIN=/usr/local/bin/phantomjs
           }
         steps {
           script  {
