@@ -28,6 +28,16 @@ pipeline {
                 }
             }
         }
+      stage('Testing')
+      {
+        Steps {
+          script  {
+                  singleRun: true,
+                    reporters: ['dots', 'junit'],
+                    junitReporter: {outputFile: 'test-results.xml'}
+                  }
+              }
+      }
        stage('Docker Build') {
             steps {
                 script {
