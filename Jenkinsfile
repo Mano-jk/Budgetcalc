@@ -30,15 +30,14 @@ pipeline {
         }
       stage('Testing')
       {
-        steps {
-          environment {
+        environment {
           PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
           PHANTOMJS_BIN=/usr/local/bin/phantomjs
           }
+        steps {
           script  {
-                  singleRun: true
-                    reporters: ['dots', 'junit']
-                    junitReporter: {outputFile: 'test-results.xml'}
+                    reporters= ['dots', 'junit']
+                    junitReporter= {outputFile: 'test-results.xml'}
                   }
               }
       }
