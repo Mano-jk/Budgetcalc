@@ -20,6 +20,9 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
+                  sonar.sources=src
+                  sonar.tests=src
+                  sonar.coverage.exclusions=**/*.spec.ts,**/*test.ts
                     sh "${scannerHome}/bin/sonar-scanner \
   -Dsonar.projectKey=BudgetCalc \
   -Dsonar.sources=. \
