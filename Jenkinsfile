@@ -20,10 +20,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                  sonar.sources=src
-                  sonar.tests=src
-                  sonar.test.inclusions=src/test.ts
-                  sh "${scannerHome}/bin/sonar-scanner \
+                 sh "${scannerHome}/bin/sonar-scanner \
   -Dsonar.projectKey=BudgetCalc \
   -Dsonar.sources=. \
   -Dsonar.host.url=http://34.125.70.47 \
