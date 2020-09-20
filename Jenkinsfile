@@ -34,8 +34,7 @@ pipeline {
           script  {
                     sh 'ng test --single-run'
                   }
-              }
-        post {
+          post {
         always {
             junit 'TestResults.xml'
         }
