@@ -30,12 +30,9 @@ pipeline {
         }
       stage('Testing')
       {
-        environment {
-          PATH=/usr/local/bin
-          }
         steps {
           script  {
-                    sh 'ng test'
+                    sh 'npm test'
                   }
               }
       }
