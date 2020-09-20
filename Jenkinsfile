@@ -32,9 +32,15 @@ pipeline {
       {
         steps {
           script  {
-                    sh 'npm test'
+                    sh 'ng test --single-run'
                   }
               }
+        post {
+        always {
+            junit 'TestResults.xml'
+        }
+    }
+}
       }
        stage('Docker Build') {
             steps {
