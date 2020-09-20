@@ -10,7 +10,6 @@ pipeline {
           sh 'npm update'
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma'
-          sh 'npm install --save-dev  --unsafe-perm node-sass'
           echo "Module installed"
           sh 'npm run build'          
             }
@@ -33,7 +32,7 @@ pipeline {
       {
         steps {
           script  {
-                    sh 'ng test --single-run'
+                    sh 'npm test --single-run'
                   }
           post {
         always {
