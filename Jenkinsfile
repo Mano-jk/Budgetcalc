@@ -25,19 +25,6 @@ pipeline {
                 }
             }
         }
-      stage('Testing')
-      {
-        steps {
-          script  {
-                    sh 'npm test --single-run'
-                  }
-          post {
-        always {
-            junit 'TestResults.xml'
-        }
-    }
-}
-      }
        stage('Docker Build') {
             steps {
                 script {
