@@ -54,7 +54,7 @@ pipeline {
       {
         steps
         {
-        mail bcc: '', body: 'Build Success at' public long getTime() '', cc: '', from: '', replyTo: '', 
+        mail bcc: '', body: 'Build Success at public long getTime()', cc: '', from: '', replyTo: '', 
         subject: 'Build Successfully completed' , to: 'manojbaradhwaj@gmail.com'
         }
       }
