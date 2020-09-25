@@ -50,12 +50,12 @@ pipeline {
             sh 'yes | docker image prune -a'
           }
         }
-      Stage('Email Notify')
+      stage('Email Notify')
       {
         steps
         {
-        mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', 
-        subject: 'Build Successfully completed', to: 'manojbaradhwaj@gmail.com'
+        mail bcc: '', body: 'Build Success at' public long getTime() '', cc: '', from: '', replyTo: '', 
+        subject: 'Build Successfully completed' , to: 'manojbaradhwaj@gmail.com'
         }
       }
     }
