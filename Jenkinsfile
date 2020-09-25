@@ -12,7 +12,10 @@ pipeline {
           sh 'npm install bulma'
           sh 'npm install karma-junit-reporter --save-dev'
           echo "Module installed"
-          sh 'npm run build'          
+          sh 'npm run build'    
+          echo "Notify"
+     mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', 
+        subject: 'Build Success', to: 'manojbaradhwaj@gmail.com'
             }
                 }
        stage('SonarQube analysis') {
