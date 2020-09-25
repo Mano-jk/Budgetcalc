@@ -55,7 +55,7 @@ pipeline {
         steps
         {
         mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', 
-        subject: 'Build Success', to: 'manojbaradhwaj@gmail.com'
+        subject: 'Build Successfully completed', to: 'manojbaradhwaj@gmail.com'
         }
       }
     }
