@@ -13,9 +13,6 @@ pipeline {
           sh 'npm install karma-junit-reporter --save-dev'
           echo "Module installed"
           sh 'npm run build'    
-          echo "Notify"
-     mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', 
-        subject: 'Build Success', to: 'manojbaradhwaj@gmail.com'
             }
                 }
        stage('SonarQube analysis') {
@@ -53,5 +50,13 @@ pipeline {
             sh 'yes | docker image prune -a'
           }
         }
+      Stage('Email Notify')
+      {
+        steps
+        {
+        mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', 
+        subject: 'Build Success', to: 'manojbaradhwaj@gmail.com'
+        }
+      }
     }
 }
