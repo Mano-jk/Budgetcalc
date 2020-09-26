@@ -25,13 +25,6 @@ pipeline {
                 }
             }
         }
-      stage('Testing'){
-        steps {
-          script {
-            sh 'npm install chromedriver'
-          }
-        }
-      }
        stage('Docker Build') {
             steps {
                 script {
@@ -39,6 +32,14 @@ pipeline {
                 }
             }
         }
+       stage('Testing'){
+        steps {
+          script {
+            sh "docker run -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
+		        sh "pytest -v -s --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
+          }
+        }
+      }
         stage('Push image - Docker Hub') {
           steps {
             script {
