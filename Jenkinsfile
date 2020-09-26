@@ -11,6 +11,7 @@ pipeline {
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma'
           sh 'npm install karma-junit-reporter --save-dev'
+          sh 'npm install chromedriver'
           echo "Module installed"
           sh 'npm run build'    
             }
