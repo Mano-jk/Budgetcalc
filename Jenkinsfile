@@ -36,7 +36,7 @@ pipeline {
        stage('Testing'){
         steps {
           script {
-            sh "docker run -d -p --name budgetcalc 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
+            sh "docker run --name budgetcalc -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
 		        sh "pytest -v -s --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
           }
         }
