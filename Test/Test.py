@@ -10,9 +10,9 @@ option.add_argument('disable-infobars')
 option.add_argument('--disable-extensions')
 option.add_argument('--disable-dev-shm-usage')
 
-def test_login():
+def test_Features():
     global driver
-    driver=webdriver.Chrome("./testing/83/chromedriver", options=option)
+    driver=webdriver.Chrome("./Test/chromedriver", options=option)
     driver.implicitly_wait(10)
     driver.get('http://localhost:80')
     print(driver.title)
