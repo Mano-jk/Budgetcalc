@@ -70,7 +70,9 @@ pipeline {
     }
   post { 
         always { 
+          script{
             docker.stop("budgetcalc")
+          }
         }
     }
 }
