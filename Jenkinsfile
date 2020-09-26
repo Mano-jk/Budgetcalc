@@ -37,7 +37,7 @@ pipeline {
         steps {
           script {
             sh "docker run --name budgetcalc -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
-		        sh "py.test -v -s --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
+		        sh "pytest -v -s --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
             }
          }
       }
