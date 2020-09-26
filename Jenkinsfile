@@ -10,9 +10,7 @@ pipeline {
           sh 'npm update'
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma'
-          sh 'npm install karma-junit-reporter --save-dev'
-          sh 'yes | sudo apt-get install python3-pip'
-          sh 'yes | pip install pytest'
+          sh 'pip install pytest'
           echo "Module installed"
           sh 'npm run build'    
             }
