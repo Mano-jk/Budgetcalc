@@ -10,7 +10,6 @@ pipeline {
           sh 'npm update'
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma'
-          sh 'sudo pip install pytest'
           echo "Module installed"
           sh 'npm run build'    
             }
