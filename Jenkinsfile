@@ -4,15 +4,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+          sh 'yes | sudo apt-get install python'
+          sh 'yes | sudo apt install python-pip'
+          sh 'yes | sudo pip install pytest'
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
           sh 'npm update'
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma'
-          sh 'sudo apt-get install python'
-          sh 'sudo apt install python-pip'
-          sh 'sudo pip install pytest'
           echo "Module installed"
           sh 'npm run build'    
             }
