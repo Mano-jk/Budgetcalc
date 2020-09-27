@@ -11,7 +11,7 @@ option.add_argument('--disable-extensions')
 option.add_argument('--disable-dev-shm-usage')
 
 global driver
-driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', options=option)
+driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', Options=option)
 
 def test_Features():
     driver.implicitly_wait(10)
