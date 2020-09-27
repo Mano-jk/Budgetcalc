@@ -14,7 +14,7 @@ global driver
 options = webdriver.ChromeOptions()
 options.binary_location = "/usr/bin/google-chrome-stable"
 chrome_driver_binary = "/usr/bin/chromedriver"
-driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
+driver = webdriver.Chrome(chrome_driver_binary, options=option)
 
 import os
 os.chmod('Test/chromedriver', 0o755)
