@@ -4,8 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-          sh 'yes | sudo apt-get install python3'
-          sh 'yes | sudo apt install python3-pip'
           sh 'yes | sudo pip3 install pytest --upgrade'
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
