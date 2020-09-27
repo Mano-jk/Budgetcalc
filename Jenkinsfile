@@ -10,6 +10,9 @@ pipeline {
           sh 'npm update'
           sh 'npm install -g @angular/cli'
           sh 'npm install bulma'
+          sh 'apt-get install python3.6'
+          sh 'apt install python3-pip'
+          sh 'pip3 install pytest'
           echo "Module installed"
           sh 'npm run build'    
             }
