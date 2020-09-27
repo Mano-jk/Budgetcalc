@@ -10,10 +10,14 @@ option.add_argument('disable-infobars')
 option.add_argument('--disable-extensions')
 option.add_argument('--disable-dev-shm-usage')
 
+global driver
+options = webdriver.ChromeOptions()
+options.binary_location = "/usr/bin/google-chrome-stable"
+chrome_driver_binary = "/usr/bin/chromedriver"
+driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
+
 import os
 os.chmod('Test/chromedriver', 0o755)
-global driver
-driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', options=option)
 
 def test_Features():
     driver.implicitly_wait(10)
