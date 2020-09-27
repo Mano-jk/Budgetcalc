@@ -10,8 +10,9 @@ option.add_argument('disable-infobars')
 option.add_argument('--disable-extensions')
 option.add_argument('--disable-dev-shm-usage')
 
-global driver
+import os
 os.chmod('Test/chromedriver', 0o755)
+global driver
 driver = webdriver.Chrome(executable_path= r'./Test/chromedriver')
 
 def test_Features():
