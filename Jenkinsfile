@@ -7,6 +7,7 @@ pipeline {
           sh 'yes | sudo apt-get install python3'
           sh 'yes | sudo apt install python3-pip'
           sh 'yes | sudo pip3 install pytest '
+          sh 'yes | sudo pip install pytest-html==2.1.1'
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
