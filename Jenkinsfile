@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-          sh 'yes | sudo apt-get install python'
-          sh 'yes | sudo apt install python-pip'
-          sh 'yes | sudo pip install pytest'
+          sh 'yes | sudo pip install pytest '
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
@@ -38,7 +36,7 @@ pipeline {
         steps {
           script {
             sh "docker run --name budgetcalc -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
-		        sh "python -m pytest -v -s --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
+		        sh "sudo python -m pytest -v -s --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
             }
          }
       }
