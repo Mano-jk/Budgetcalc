@@ -22,19 +22,44 @@ os.chmod('Test/chromedriver', 0o755)
 def test_title_check():
     assert (driver.title == 'BudgetApp'), 'title not matched'
 
-def test_prod():
-    driver.implicitly_wait(10)
-    driver.get('http://localhost:80')
-    print(driver.title)
+    class Budget(unittest.TestCase):
     
-    driver.find_element_by_name("amount").send_keys('1000')
-    driver.find_element_by_name('description').send_keys('Salary')
-    driver.find_element_by_xpath('/html/body/app-root/app-main-page/section[2]/div/app-add-item-form/form/div/div/div[3]/button/p').click()
-    print(driver.title)
-
-    driver.find_element_by_name("amount").send_keys('-100')
-    driver.find_element_by_name('description').send_keys('Home Rent')
-    driver.find_element_by_xpath('/html/body/app-root/app-main-page/section[2]/div/app-add-item-form/form/div/div/div[3]/button/p').click()
-    print(driver.title)
-
+    def test_budget(self):
+        driver = self.driver
+        driver.get("http://localhost:80")
+        driver.find_element_by_name("amount").click()
+        driver.find_element_by_name("amount").clear()
+        driver.find_element_by_name("amount").send_keys("1000")
+        driver.find_element_by_name("description").click()
+        driver.find_element_by_name("description").clear()
+        driver.find_element_by_name("description").send_keys("Salary")
+        driver.find_element_by_xpath("//button/p").click()
+        driver.find_element_by_name("amount").click()
+        driver.find_element_by_name("amount").clear()
+        driver.find_element_by_name("amount").send_keys("-100")
+        driver.find_element_by_name("description").clear()
+        driver.find_element_by_name("description").send_keys("Rent")
+        driver.find_element_by_xpath("//button/p").click()
+    
+    def is_element_present(self, how, what):
+        try: self.driver.find_element(by=how, value=what)
+        except NoSuchElementException as e: return False
+        return True
+    
+    def is_alert_present(self):
+        try: self.driver.switch_to_alert()
+        except NoAlertPresentException as e: return False
+        return True
+    
+    def close_alert_and_get_its_text(self):
+        try:
+            alert = self.driver.switch_to_alert()
+            alert_text = alert.text
+            if self.accept_next_alert:
+                alert.accept()
+            else:
+                alert.dismiss()
+            return alert_text
+        finally: self.accept_next_alert = True
+    
 driver.close()
