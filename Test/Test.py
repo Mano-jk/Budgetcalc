@@ -19,10 +19,24 @@ driver = webdriver.Chrome(chrome_driver_binary, options=option)
 import os
 os.chmod('Test/chromedriver', 0o755)
 
-def test_Features():
+def test_prod():
     driver.implicitly_wait(10)
     driver.get('http://localhost:80')
     print(driver.title)
+    
 def test_title_check():
     assert (driver.title == 'BudgetApp'), 'title not matched'
-    driver.close()
+    
+def test_add_income():
+    driver.find_element_by_name("amount").send_keys('1000')
+    driver.find_element_by_name('description').send_keys('Salary')
+    driver.find_element_by_xpath('/html/body/app-root/app-main-page/section[2]/div/app-add-item-form/form/div/div/div[3]/button/p').click()
+    print(driver.title)
+
+def test_add_expense():
+    driver.find_element_by_name("amount").send_keys('-100')
+    driver.find_element_by_name('description').send_keys('Home Rent')
+    driver.find_element_by_xpath('/html/body/app-root/app-main-page/section[2]/div/app-add-item-form/form/div/div/div[3]/button/p').click()
+    print(driver.title)
+
+driver.close()
