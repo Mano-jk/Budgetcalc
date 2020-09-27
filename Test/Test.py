@@ -11,12 +11,12 @@ option.add_argument('--disable-extensions')
 option.add_argument('--disable-dev-shm-usage')
 
 global driver
-driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', Options=option)
+driver = webdriver.Chrome(executable_path= r'./Test/chromedriver')
 
 def test_Features():
     driver.implicitly_wait(10)
     driver.get('http://localhost:80')
     print(driver.title)
 def test_title_check():
-    assert (driver.title == 'Budget Calculator'), 'title not matched'
+    assert (driver.title == 'BudgetApp'), 'title not matched'
     driver.close()
