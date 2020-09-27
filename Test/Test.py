@@ -21,10 +21,8 @@ os.chmod('Test/chromedriver', 0o755)
 
 def test_title_check():
     assert (driver.title == 'BudgetApp'), 'title not matched'
-
-    class Budget(unittest.TestCase):
-    
-    def test_budget(self):
+ 
+def test_budget(self):
         driver = self.driver
         driver.get("http://localhost:80")
         driver.find_element_by_name("amount").click()
