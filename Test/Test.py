@@ -1,8 +1,6 @@
 from selenium import webdriver
 #driver.implicitly_wait(10)
 from selenium.webdriver.chrome.options import Options
-global driver
-driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', options=option)
 
 option=Options()
 option.add_argument("--headless")   
@@ -12,6 +10,9 @@ option.add_argument('disable-infobars')
 option.add_argument('--disable-extensions')
 option.add_argument('--disable-dev-shm-usage')
 
+global driver
+driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', options=option)
+
 def test_Features():
     driver.implicitly_wait(10)
     driver.get('http://localhost:80')
@@ -19,4 +20,3 @@ def test_Features():
 def test_title_check():
     assert (driver.title == 'Budget Calculator'), 'title not matched'
     driver.close()
-    
