@@ -13,7 +13,7 @@ option.add_argument('--disable-dev-shm-usage')
 import os
 os.chmod('Test/chromedriver', 0o755)
 global driver
-driver = webdriver.Chrome(executable_path= r'./Test/chromedriver' options=option)
+driver = webdriver.Chrome(executable_path= r'./Test/chromedriver', options=option)
 
 def test_Features():
     driver.implicitly_wait(10)
