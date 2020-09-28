@@ -22,6 +22,10 @@ options.binary_location = "/usr/bin/google-chrome-stable"
 chrome_driver_binary = "/usr/bin/chromedriver"
 driver = webdriver.Chrome(chrome_driver_binary, options=option)
 
+def test_title_check():
+    assert (driver.title == 'BudgetApp'), 'title not matched' 
+    print(driver.title)
+    
 def test():
     driver.get('http://localhost:80')
     driver.implicitly_wait(10)
