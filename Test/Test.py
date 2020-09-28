@@ -29,9 +29,7 @@ class Budget(unittest.TestCase):
         self.base_url = "https://www.google.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
-        
- def test_title_check():
-    assert (driver.title == 'BudgetApp'), 'title not matched'       
+            
  
 def test_budget(self):
         driver = self.driver
