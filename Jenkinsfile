@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-          sh 'yes | sudo python3.8 pip install pytest --upgrade'
-          sh 'yes | sudo python3.8 pip install pytest-html --upgrade'
+          sh 'yes | sudo python3.8 pip3 install pytest --upgrade'
+          sh 'yes | sudo python3.8 pip3 install pytest-html --upgrade'
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
@@ -18,7 +18,7 @@ pipeline {
                 }
        stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'SonarQube Scanner 2.8';
+                  scannerHome = tool 'SonarQube Scanner 2.8';
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
@@ -38,7 +38,7 @@ pipeline {
           script {
             sh "docker run --name budgetcalc -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
             sh "google-chrome-stable --headless --disable-gpu"
-		        sh "sudo python3.8 -m pytest --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
+		        sh "sudo python3.8 -m /usr/local/bin/pytest --html=functional_result_${env.BUILD_ID}.html Test/Test.py"
             }
          }
       }
