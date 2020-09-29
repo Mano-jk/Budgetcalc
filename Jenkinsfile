@@ -37,6 +37,12 @@ pipeline {
             sh "docker run --name budgetcalc${env.BUILD_ID} -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
             sh "google-chrome-stable --headless --disable-gpu"
 		        sh "pytest -v -s --html=test_result_${env.BUILD_ID}.html Test/Test.py"
+            sh "docker container stop budgetcalc${env.BUILD_ID}"
+            echo "Docker container stopped"
+            sh "docker container rm budgetcalc${env.BUILD_ID}"
+            echo "Docker container removed"
+            mail bcc: '', body: 'Testing Successfully', cc: '', from: '', replyTo: '', 
+        subject: 'Testing Completed Successfully' , to: 'manojbaradhwaj@gmail.com'
             }
          }
       }
@@ -69,7 +75,7 @@ pipeline {
   post { 
         always { 
           script{
-            sh 'yes | docker image prune -a'
+            sh 'yes | docker image prune'
             echo "Dangled Images removed"
           }
         }
