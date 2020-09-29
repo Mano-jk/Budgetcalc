@@ -36,7 +36,7 @@ pipeline {
           script {
             sh "docker run --name budgetcalc -d -p 80:80 m1noj/budgetcalc:${env.BUILD_ID}"
             sh "google-chrome-stable --headless --disable-gpu"
-		        sh "pytest -v --self-contained-html --html=test_result_${env.BUILD_ID}.html Test/Test.py"
+		        sh "python3.8 -m pytest -v --self-contained-html --html=test_result_${env.BUILD_ID}.html Test/Test.py"
             }
          }
       }
