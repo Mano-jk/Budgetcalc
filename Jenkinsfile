@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-          sh 'sudo pip -H install pytest'
-          sh 'sudo pip -H install pytest-html'
+          sh 'sudo pip install -H pytest'
+          sh 'sudo pip install -H pytest-html'
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
