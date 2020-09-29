@@ -4,6 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+           sh "docker container stop budgetcalc${env.BUILD_ID}"
+            echo "Docker container stopped"
+            sh "docker container rm budgetcalc${env.BUILD_ID}"
+            echo "Docker container removed"
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
@@ -12,6 +16,8 @@ pipeline {
           sh 'npm install bulma'
           echo "Module installed"
           sh 'npm run build'    
+                                mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+        subject: 'Build Successful' , to: 'manojbaradhwaj@gmail.com'
             }
                 }
        stage('SonarQube analysis') {
@@ -21,6 +27,8 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube') {
                  sh "${scannerHome}/bin/sonar-scanner"
+                  mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+        subject: 'SonarQube analysis Successful' , to: 'manojbaradhwaj@gmail.com'
                 }
             }
         }
@@ -28,6 +36,8 @@ pipeline {
             steps {
                 script {
                     docker.build("m1noj/budgetcalc:${env.BUILD_ID}")
+                     mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+        subject: 'Docker Build Successful' , to: 'manojbaradhwaj@gmail.com'
                 }
             }
         }
@@ -52,6 +62,8 @@ pipeline {
                       docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
                     {
                           docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push("latest")
+                                           mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+        subject: 'Image pushed to Docker Hub' , to: 'manojbaradhwaj@gmail.com'
                     }
                 } 
             }
@@ -60,6 +72,8 @@ pipeline {
             stage('Deploy-docker-swarm') {
         steps{
            sh 'docker stack deploy --prune --compose-file docker-compose.yml budgetCalc'   
+         mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+        subject: 'Docker Swarm Deployed' , to: 'manojbaradhwaj@gmail.com'
           }
            }
       
