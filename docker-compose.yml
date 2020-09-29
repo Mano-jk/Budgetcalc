@@ -1,0 +1,6 @@
+version: '3'
+services:
+  web:
+    image: sweety1995/budgetcalc:latest
+    ports:
+      - "80:80"
