@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-           sh "docker container stop budgetcalc${env.BUILD_ID}"
+           sh "docker container stop budgetcalc"
             echo "Docker container stopped"
-            sh "docker container rm budgetcalc${env.BUILD_ID}"
+            sh "docker container rm budgetcalc"
             echo "Docker container removed"
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
