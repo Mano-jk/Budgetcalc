@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-          sh 'pip install pytest'
-          sh 'pip install pytest-html'
+          sh 'sudo pip install pytest'
+          sh 'sudo pip install pytest-html'
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
 	        sh 'npm install'
@@ -53,13 +53,6 @@ pipeline {
             }
         }
       
-        stage('Remove Unused docker image') 
-        {
-          steps
-          {
-            sh 'yes | docker image prune -a'
-          }
-        }
       stage('Email Notify')
       {
         steps
@@ -73,7 +66,11 @@ pipeline {
         always { 
           script{
             sh "docker container stop budgetcalc"
+            echo "Docker container stopped"
             sh "docker container rm budgetcalc"
+            echo "Docker container removed"
+            sh 'yes | docker image prune -a'
+            echo "Dangled Images removed"
           }
         }
     }
