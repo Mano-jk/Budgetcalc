@@ -12,7 +12,7 @@ pipeline {
           sh 'npm install bulma'
           echo "Module installed"
           sh 'npm run build'    
-                                mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+                                mail bcc: '', body: 'Build Successful', cc: '', from: '', replyTo: '', 
         subject: 'Build Successful' , to: 'manojbaradhwaj@gmail.com'
             }
                 }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube') {
                  sh "${scannerHome}/bin/sonar-scanner"
-                  mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+                  mail bcc: '', body: 'SonarQube analysis Successful', cc: '', from: '', replyTo: '', 
         subject: 'SonarQube analysis Successful' , to: 'manojbaradhwaj@gmail.com'
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     docker.build("m1noj/budgetcalc:${env.BUILD_ID}")
-                     mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+                     mail bcc: '', body: 'Docker Build Successful', cc: '', from: '', replyTo: '', 
         subject: 'Docker Build Successful' , to: 'manojbaradhwaj@gmail.com'
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
                       docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
                     {
                           docker.image("m1noj/budgetcalc:${env.BUILD_ID}").push("latest")
-                                           mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+                                           mail bcc: '', body: 'Image pushed to Docker Hub', cc: '', from: '', replyTo: '', 
         subject: 'Image pushed to Docker Hub' , to: 'manojbaradhwaj@gmail.com'
                     }
                 } 
@@ -68,7 +68,7 @@ pipeline {
             stage('Deploy-docker-swarm') {
         steps{
            sh 'docker stack deploy --prune --compose-file docker-compose.yml budgetCalc'   
-         mail bcc: '', body: '', cc: '', from: '', replyTo: '', 
+         mail bcc: '', body: 'Docker Swarm Deployed', cc: '', from: '', replyTo: '', 
         subject: 'Docker Swarm Deployed' , to: 'manojbaradhwaj@gmail.com'
           }
            }
