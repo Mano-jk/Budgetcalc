@@ -25,7 +25,7 @@ chrome_driver_binary = "/usr/bin/chromedriver"
 driver = webdriver.Chrome(chrome_driver_binary, options=option)
 
 def test_title_check():
-    assert (driver.title == 'BudgetApp'), 'title not matched' 
+    assert (driver.title == ' BudgetApp'), 'title not matched' 
     print(driver.title)
     
 def test():
