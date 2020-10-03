@@ -4,9 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            sh "docker container stop budgetcalc255"
+             sh "Docker swarm leave --force"
+            sh "Docker stop $(docker ps -aq)"
             echo "Docker container stopped"
-            sh "docker container rm budgetcalc255"
+            sh "Docker rm $(docker ps -aq"
             echo "Docker container removed"
           sh 'npm cache clean --force'
           sh 'rm -rf node_modules package-lock.json'
